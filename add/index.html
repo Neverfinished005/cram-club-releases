@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Join me on Cram Club</title>
+<meta name="description" content="You've been invited to study together on Cram Club.">
+<meta name="robots" content="noindex">
+<style>
+  :root { --bg:#0c0c0e; --card:#3d0c1c; --fg:#ffe9f0; --accent:#ffd400; --pink:#ff2d87; --muted:rgba(255,233,240,.7); }
+  * { box-sizing:border-box }
+  body { margin:0; min-height:100vh; background:var(--bg); color:var(--fg); font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    display:flex; align-items:center; justify-content:center; padding:24px 16px; }
+  .card { width:100%; max-width:380px; background:var(--card); border-radius:22px; overflow:hidden; box-shadow:0 30px 60px -20px rgba(0,0,0,.7) }
+  .pattern { height:120px; background:
+      linear-gradient(135deg,transparent 46%,var(--pink) 46% 54%,transparent 54%) 0 0/26px 28px,
+      linear-gradient(45deg,transparent 46%,var(--accent) 46% 54%,transparent 54%) 0 0/26px 28px, var(--card) }
+  .body { padding:22px 22px 26px; display:flex; flex-direction:column; gap:12px }
+  .kicker { font:600 11px ui-monospace,Menlo,monospace; letter-spacing:.12em; text-transform:uppercase; color:var(--muted) }
+  h1 { margin:0; font-size:28px; line-height:1.05; font-weight:800; color:var(--accent) }
+  p { margin:0; line-height:1.5; color:var(--muted); font-size:15px }
+  .code { font:700 18px ui-monospace,Menlo,monospace; letter-spacing:.08em; color:var(--fg); background:rgba(255,255,255,.08); border-radius:10px; padding:10px 12px; text-align:center }
+  .btn { display:block; text-align:center; text-decoration:none; font-weight:800; font-size:16px; border-radius:999px; padding:14px 18px }
+  .primary { background:var(--accent); color:#2b0710 }
+  .ghost { background:rgba(255,255,255,.1); color:var(--fg) }
+  .small { font-size:12.5px }
+  [hidden] { display:none !important }
+</style>
+</head>
+<body>
+  <main class="card">
+    <div class="pattern" aria-hidden="true"></div>
+    <div class="body">
+      <span class="kicker">Cram Club · Study Ticket</span>
+      <h1 id="title">Study with me on Cram Club</h1>
+      <p id="lead">Open the app to send a friend request, then lock in together.</p>
+      <div class="code" id="room" hidden></div>
+      <a class="btn primary" id="open" href="#">Open in Cram Club</a>
+      <a class="btn ghost" id="download" href="https://github.com/Neverfinished005/cram-club-releases/releases/latest/download/CramClub.apk">Download the app (Android)</a>
+      <p class="small">Don't have it yet? Install it, sign in with Google, then come back and tap “Open in Cram Club”. Cram Club is Android only for now.</p>
+    </div>
+  </main>
+<script>
+  (function () {
+    var q = new URLSearchParams(location.search);
+    var handle = (q.get('u') || '').toLowerCase().replace(/[^a-z0-9_]/g, '').slice(0, 30);
+    var room = (q.get('room') || '').toUpperCase().replace(/[^A-Z0-9-]/g, '').slice(0, 16);
+    var apk = document.getElementById('download').href;
+    if (handle) {
+      document.getElementById('title').textContent = '@' + handle + ' invited you';
+      document.getElementById('lead').textContent = room
+        ? 'Join their live study room, or add them as a friend if the room has ended.'
+        : 'Add them as a friend on Cram Club and study together.';
+    }
+    if (room) {
+      var r = document.getElementById('room');
+      r.textContent = 'Room code: ' + room;
+      r.hidden = false;
+    }
+    var path = 'add/' + encodeURIComponent(handle || 'friend') + (room ? '?room=' + encodeURIComponent(room) : '');
+    var open = document.getElementById('open');
+    if (/android/i.test(navigator.userAgent)) {
+      // Opens the app if installed, otherwise downloads it
+      open.href = 'intent://' + path + '#Intent;scheme=cramclub;package=com.anonymous.cramclub;S.browser_fallback_url=' +
+        encodeURIComponent(apk) + ';end';
+    } else {
+      open.href = 'cramclub://' + path;
+    }
+  })();
+</script>
+</body>
+</html>
