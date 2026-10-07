@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Join me on Cram Club</title>
-<meta name="description" content="You've been invited to study together on Cram Club.">
+<title>Join me on Lockrew</title>
+<meta name="description" content="You've been invited to study together on Lockrew.">
 <meta name="robots" content="noindex">
 <style>
   :root { --bg:#0c0c0e; --card:#3d0c1c; --fg:#ffe9f0; --accent:#ffd400; --pink:#ff2d87; --muted:rgba(255,233,240,.7); }
@@ -31,13 +31,13 @@
   <main class="card">
     <div class="pattern" aria-hidden="true"></div>
     <div class="body">
-      <span class="kicker">Cram Club · Study Ticket</span>
-      <h1 id="title">Study with me on Cram Club</h1>
+      <span class="kicker">Lockrew · Study Ticket</span>
+      <h1 id="title">Study with me on Lockrew</h1>
       <p id="lead">Open the app to send a friend request, then lock in together.</p>
       <div class="code" id="room" hidden></div>
-      <a class="btn primary" id="open" href="#">Open in Cram Club</a>
+      <a class="btn primary" id="open" href="#">Open in Lockrew</a>
       <a class="btn ghost" id="download" href="https://github.com/Neverfinished005/cram-club-releases/releases/latest/download/CramClub.apk">Download the app (Android)</a>
-      <p class="small">Don't have it yet? Install it, sign in with Google, then come back and tap “Open in Cram Club”. Cram Club is Android only for now.</p>
+      <p class="small">Don't have it yet? Install it, sign in with Google, then come back and tap “Open in Lockrew”. Lockrew is Android only for now.</p>
     </div>
   </main>
 <script>
@@ -50,7 +50,7 @@
       document.getElementById('title').textContent = '@' + handle + ' invited you';
       document.getElementById('lead').textContent = room
         ? 'Join their live study room, or add them as a friend if the room has ended.'
-        : 'Add them as a friend on Cram Club and study together.';
+        : 'Add them as a friend on Lockrew and study together.';
     }
     if (room) {
       var r = document.getElementById('room');
