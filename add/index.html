@@ -61,10 +61,10 @@
     var open = document.getElementById('open');
     if (/android/i.test(navigator.userAgent)) {
       // Opens the app if installed, otherwise downloads it
-      open.href = 'intent://' + path + '#Intent;scheme=cramclub;package=com.anonymous.cramclub;S.browser_fallback_url=' +
+      open.href = 'intent://' + path + '#Intent;scheme=lockrew;package=com.lockrew.app;S.browser_fallback_url=' +
         encodeURIComponent(apk) + ';end';
     } else {
-      open.href = 'cramclub://' + path;
+      open.href = 'lockrew://' + path;
     }
   })();
 </script>
